@@ -1,25 +1,96 @@
-# Candidate Instructions & Known Bugs (do not change this file name)
+# Assignment: By Suraj Verma
 
-This project is intentionally flawed. Your tasks:
+### 📹 Video Explanation  
+(Add link here)
 
-1. Fix crashes and freezes
-2. Implement navigation to the detail screen
-3. Make network calls off the main thread
-4. Replace GlobalScope usage with proper ViewModelScope or lifecycle-aware scope
-5. Implement local persistence (Room) and use it as cache
-6. Correct JSON parsing / DTO mapping
-7. Add loading/error/empty states properly
-8. Remove memory leak (do not use static Activity references)
-9. Implement updateArticle to persist edits
-10. Improve project structure where obvious (move business logic out of composables)
+---
 
+## ✅ Overview
 
-Deliverables:
-- Working app (no crashes) that loads articles (from the fake API or a real one)
-- README describing changes and tradeoffs
-- Optional: unit tests and small demo video
+I implemented the **Fake News API** provided in the project since there was no API key available for the real News API.
 
+I also made small modifications to the fake JSON and **added 4 more demo news items** including:
 
-Notes:
-- Some code intentionally causes the app to freeze or crash. Find and fix them.
-- We expect you to explain each bug and your fix in the README.
+- image URLs  
+- titles  
+- content  
+
+---
+
+## ✨ Key Changes Made
+
+### 1️⃣ MainActivity.kt
+- Removed the companion object  
+- Removed memory leak caused by static data reference  
+- Cleaned up unused and unnecessary code  
+
+---
+
+### 2️⃣ Navigation
+Implemented proper navigation architecture.
+
+Files created:
+
+- `NavGraph.kt`
+- `Routes.kt`
+
+Also:
+
+- Replaced `NewsScreen` call with `NavGraph` inside `MainActivity.kt`
+
+---
+
+### 3️⃣ Article.kt
+- Added `@SerializedName` annotations to map JSON response correctly  
+- Modified Fake JSON to include:
+  - 5 demo news articles  
+  - image URLs  
+  - content text  
+- No changes to existing field names  
+
+---
+
+### 4️⃣ NewsScreen.kt
+- Removed `LaunchedEffect` and `GlobalScope` usage  
+- Shifted API calls into `ViewModel`  
+- Major UI improvements:
+  - Better layout design
+  - Displaying images using **Coil**
+  - Cleaner list styling  
+
+---
+
+### 5️⃣ MyViewModel.kt
+- Created a **ViewModel** with proper state management  
+- Repository now handles data fetching  
+- UI observes state using flows  
+- Followed **MVVM architecture best practices**
+
+---
+
+### 6️⃣ DetailScreen.kt
+- Passed selected article through navigation  
+- Displayed chosen article details on detail screen  
+- Implemented enhanced UI for news details  
+
+---
+
+### 7️⃣ Gradle Changes
+Added dependencies for:
+
+- Navigation
+- ViewModel / Lifecycle
+- Coil (image loading)
+
+---
+
+## 🚀 Result
+
+The app now:
+
+- follows MVVM architecture  
+- uses Navigation Compose  
+- separates UI and data layers  
+- displays news list and detailed news content cleanly  
+
+---
